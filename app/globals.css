@@ -1,26 +1,166 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ---------------------------
+   UTILITIES (UNCHANGED)
+--------------------------- */
+@layer utilities {
+  .wrapper {
+    @apply max-w-7xl w-full mx-auto p-5;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @screen md {
+    .wrapper {
+      @apply px-10;
+    }
+  }
+
+  .flex-start {
+    @apply flex justify-start items-center;
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+
+  .h1-bold {
+    @apply font-bold text-3xl;
+  }
+
+  .h2-bold {
+    @apply font-bold text-2xl;
+  }
+
+  .h3-bold {
+    @apply font-bold text-xl;
+  }
+
+  @screen lg {
+    .h1-bold {
+      @apply text-4xl;
+    }
+
+    .h2-bold {
+      @apply text-3xl;
+    }
+
+    .h3-bold {
+      @apply text-2xl;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------------------------
+   THEME COLORS — Inspired by Food App UI
+--------------------------- */
+@layer base {
+  :root {
+    /* Light Theme — soft, warm neutrals + subtle accent */
+    --background: #FAF9F6;             /* light warm background */
+    --foreground: #2E2B26;            /* dark text, soft black/brown */
+    --card: #FFFFFF;                  /* pure card background */
+    --card-foreground: #2E2B26;
+
+    --popover: #FFFFFF;
+    --popover-foreground: #2E2B26;
+
+    --primary: #FF7E1B;             /* warm accent (e.g. for buttons, highlights) */
+    --primary-foreground: #FFFFFF;
+
+    --secondary: #FFB572;          /* softer accent / secondary action */
+    --secondary-foreground: #2E2B26;
+
+    --muted: #F5F4F2;              /* light-muted surfaces */
+    --muted-foreground: #7A7672;
+
+    --accent: #F5F4F2;
+    --accent-foreground: #2E2B26;
+
+    --destructive: #E04A3F;        /* for errors / destructive actions */
+    --destructive-foreground: #FFFFFF;
+
+    --border: #E6E4E0;
+    --input: #E6E4E0;
+    --ring: #2E2B26;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark Theme — deep dark background + warm accents */
+    --background: #1B1A18;          /* very dark background */
+    --foreground: #EAE8E3;          /* light text */
+
+    --card: #242322;               /* card background dark */
+    --card-foreground: #EAE8E3;
+
+    --popover: #242322;
+    --popover-foreground: #EAE8E3;
+
+    --primary: #FF9C4A;             /* accent in dark mode — warm orange/gold */
+    --primary-foreground: #1B1A18;
+
+    --secondary: #FFCD94;           /* softer accent for secondary actions */
+    --secondary-foreground: #1B1A18;
+
+    --muted: #242322;
+    --muted-foreground: #A09F9C;
+
+    --accent: #242322;
+    --accent-foreground: #EAE8E3;
+
+    --destructive: #D6574E;
+    --destructive-foreground: #1B1A18;
+
+    --border: #3B3A38;
+    --input: #3B3A38;
+    --ring: #EAE8E3;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+/* Map into Tailwind theme tokens (unchanged) */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
