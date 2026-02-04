@@ -45,7 +45,7 @@ const MenuPage = () => {
       </div>
 
       {/* Category Filter Buttons */}
-      <div className="flex justify-center gap-4 mb-6 px-4">
+      <div className="flex justify-center gap-4 mb-8 px-4">
         {categories.map((cat) => (
           <button
             key={cat.id}
@@ -74,7 +74,7 @@ const MenuPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="group relative flex flex-col justify-between rounded-2xl border bg-card p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                className="group relative flex flex-col justify-between rounded-2xl p-4 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-neutral-500 dark:hover:shadow-neutral-700"
               >
                 {/* IMAGE */}
                 {item.img && (
