@@ -11,3 +11,4 @@
 - npm install lucide-react
 - npm install next-themes
 - npm i react-icons
+- npm i framer-motion

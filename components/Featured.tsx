@@ -1,20 +1,13 @@
 import { featuredProducts } from "@/data";
 import Image from "next/image";
-import React from "react";
 import { Button } from "@/components/ui/button";
 
 const Featured = () => {
-
-// Suppose featuredProducts is your full array of products
-const allProducts = featuredProducts;
-
-// Take only the first 6 items for Featured section
-const featuredProducts6 = allProducts.slice(0, 6);
-
-
+  const allProducts = featuredProducts;
+  const featuredProducts6 = allProducts.slice(0, 6);
 
   return (
-    <section className="w-full py-12 hover:shadow-xl">
+    <section className="w-full py-12">
       {/* Section Header */}
       <div className="mx-auto mb-6 flex max-w-7xl flex-col gap-2 px-4">
         <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
@@ -26,7 +19,7 @@ const featuredProducts6 = allProducts.slice(0, 6);
       </div>
 
       {/* Horizontal Scroll */}
-      <div className="w-screen overflow-x-auto">
+      <div className="w-full overflow-x-auto scroll-smooth">
         <div className="flex w-max snap-x snap-mandatory gap-6 px-4 py-4">
           {featuredProducts6.map((item) => (
             <div
@@ -35,33 +28,25 @@ const featuredProducts6 = allProducts.slice(0, 6);
             >
               {/* IMAGE */}
               {item.img && (
-                <div className="relative h-44 w-full overflow-hidden rounded-xl">
+                <div className="relative h-44 w-full overflow-hidden rounded-xl hover:rotate-60 transtition-all duration-300">
                   <Image
                     src={item.img}
                     alt={item.title}
                     fill
-                    className="object-contain transition-transform duration-500 group-hover:scale-110"
+                    className="object-contain transition-transform duration-500 group-hover:scale-103"
                   />
                 </div>
               )}
 
               {/* TEXT */}
               <div className="mt-4 flex flex-col items-center gap-3 text-center">
-                <h3 className="text-lg font-semibold md:text-xl">
-                  {item.title}
-                </h3>
+                <h3 className="text-lg font-semibold md:text-xl">{item.title} <sup className="text-sm text-amber-400">{item.category}</sup></h3>
 
-                <p className="line-clamp-3 text-sm text-muted-foreground">
-                  {item.desc}
-                </p>
+                <p className="line-clamp-3 text-sm text-muted-foreground">{item.desc}</p>
 
-                <span className="text-xl font-bold text-primary">
-                  ${item.price}
-                </span>
+                <span className="text-xl font-bold text-primary">${item.price}</span>
 
-                <Button className="mt-2 w-full">
-                  Add to cart
-                </Button>
+                <Button className="mt-2 w-full">Add to cart</Button>
               </div>
             </div>
           ))}

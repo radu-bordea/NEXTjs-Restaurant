@@ -1,71 +1,115 @@
+"use client";
+
 import { featuredProducts } from "@/data";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
+
+const categories = [
+  { id: "all", title: "All" },
+  { id: "pizza", title: "Pizzas" },
+  { id: "pasta", title: "Pastas" },
+  { id: "burghers", title: "Burgers" },
+];
 
 const MenuPage = () => {
+  const [activeCategory, setActiveCategory] = useState("all");
+
+  const filteredProducts =
+    activeCategory === "all"
+      ? featuredProducts
+      : featuredProducts.filter(
+          (product) => product.category === activeCategory
+        );
+
+  // Determine desktop grid columns based on number of products
+  const getDesktopCols = () => {
+    const count = filteredProducts.length;
+    if (count === 1) return "lg:grid-cols-1";
+    if (count === 2) return "lg:grid-cols-2";
+    if (count === 3) return "lg:grid-cols-3";
+    return "lg:grid-cols-4"; // default for 4+
+  };
+
   return (
-    <section className="w-full py-12">
+    <section className="w-full pt-12 pb-48">
       {/* Section Header */}
       <div className="mx-auto mb-6 flex max-w-7xl flex-col gap-2 px-4">
         <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
-          Best Burgers
+          Menu
         </h2>
         <p className="text-sm text-muted-foreground">
-          Our most popular picks, freshly grilled and loved by everyone.
+          Browse our selection of pizzas, pastas, and burgers.
         </p>
       </div>
 
-      {/* MOBILE: Horizontal scroll | DESKTOP: Grid */}
-      <div className="w-full overflow-x-auto md:overflow-visible">
+      {/* Category Filter Buttons */}
+      <div className="flex justify-center gap-4 mb-6 px-4">
+        {categories.map((cat) => (
+          <button
+            key={cat.id}
+            onClick={() => setActiveCategory(cat.id)}
+            className={`px-4 py-2 rounded-full border font-medium transition-colors ${
+              activeCategory === cat.id
+                ? "bg-amber-600 text-white border-amber-600"
+                : "bg-white text-amber-600 border-amber-600 hover:bg-amber-500 hover:text-white"
+            }`}
+          >
+            {cat.title}
+          </button>
+        ))}
+      </div>
+
+      {/* Products Grid */}
+      <div className="w-full px-4">
         <div
-          className="
-            flex w-max snap-x snap-mandatory gap-6 px-4 py-4
-            md:grid md:w-full md:max-w-7xl md:mx-auto md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4
-          "
+          className={`grid gap-6 max-w-7xl mx-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-2 ${getDesktopCols()}`}
         >
-          {featuredProducts.map((item) => (
-            <div
-              key={item.id}
-              className="
-                group relative flex h-[60vh] w-[80vw] max-w-sm snap-center flex-col justify-between
-                rounded-2xl border bg-card p-4 shadow-sm transition-all duration-300
-                hover:-translate-y-1 hover:shadow-lg
-                md:h-auto md:w-full
-              "
-            >
-              {/* IMAGE */}
-              {item.img && (
-                <div className="relative h-44 w-full overflow-hidden rounded-xl">
-                  <Image
-                    src={item.img}
-                    alt={item.title}
-                    fill
-                    className="object-contain transition-transform duration-500 group-hover:scale-110"
-                  />
+          <AnimatePresence>
+            {filteredProducts.map((item) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="group relative flex flex-col justify-between rounded-2xl border bg-card p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+              >
+                {/* IMAGE */}
+                {item.img && (
+                  <div className="relative h-44 w-full overflow-hidden rounded-xl hover:rotate-60 transtition-all duration-300">
+                    <Image
+                      src={item.img}
+                      alt={item.title}
+                      fill
+                      className="object-contain transition-transform duration-500 group-hover:scale-103"
+                    />
+                  </div>
+                )}
+
+                {/* TEXT */}
+                <div className="mt-4 flex flex-col items-center gap-3 text-center">
+                  <h3 className="text-lg font-semibold md:text-xl">
+                    {item.title}{" "}
+                    <sup className="text-sm text-amber-400">
+                      {item.category}
+                    </sup>
+                  </h3>
+
+                  <p className="line-clamp-3 text-sm text-muted-foreground">
+                    {item.desc}
+                  </p>
+
+                  <span className="text-xl font-bold text-primary">
+                    ${item.price}
+                  </span>
+
+                  <Button className="mt-2 w-full">Add to cart</Button>
                 </div>
-              )}
-
-              {/* TEXT */}
-              <div className="mt-4 flex flex-col items-center gap-3 text-center">
-                <h3 className="text-lg font-semibold md:text-xl">
-                  {item.title}
-                </h3>
-
-                <p className="line-clamp-3 text-sm text-muted-foreground">
-                  {item.desc}
-                </p>
-
-                <span className="text-xl font-bold text-primary">
-                  ${item.price}
-                </span>
-
-                <Button className="mt-2 w-full">
-                  Add to cart
-                </Button>
-              </div>
-            </div>
-          ))}
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </div>
     </section>
