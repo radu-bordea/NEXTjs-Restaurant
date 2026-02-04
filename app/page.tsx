@@ -1,9 +1,13 @@
-import Image from "next/image";
+import Featured from '@/components/Featured'
+import Offer from '@/components/Offer'
+import Slider from '@/components/Slider'
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      Hello World
-    </div>
-  );
+    <main>
+      <Slider/>
+      <Featured/>
+      <Offer/>
+    </main>
+  )
 }
