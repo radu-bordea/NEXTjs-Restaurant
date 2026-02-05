@@ -10,7 +10,7 @@ const Featured = () => {
     <section className="w-full py-12">
       {/* Section Header */}
       <div className="mx-auto mb-6 flex max-w-7xl flex-col gap-2 px-4">
-        <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
+        <h2 className="text-2xl font-bold text-amber-600 tracking-tight md:text-3xl">
           Featured Burgers
         </h2>
         <p className="text-sm text-muted-foreground">
@@ -40,13 +40,13 @@ const Featured = () => {
 
               {/* TEXT */}
               <div className="mt-4 flex flex-col items-center gap-3 text-center">
-                <h3 className="text-lg font-semibold md:text-xl">{item.title} <sup className="text-sm text-amber-400">{item.category}</sup></h3>
+                <h3 className="text-lg font-semibold md:text-xl">{item.title} <sup className="text-sm text-muted-foreground">{item.category}</sup></h3>
 
                 <p className="line-clamp-3 text-sm text-muted-foreground">{item.desc}</p>
 
                 <span className="text-xl font-bold text-primary">${item.price}</span>
 
-                <Button className="mt-2 w-full">Add to cart</Button>
+                <Button className="mt-2 w-full cursor-pointer">Add to cart</Button>
               </div>
             </div>
           ))}

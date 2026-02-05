@@ -12,3 +12,4 @@
 - npm install next-themes
 - npm i react-icons
 - npm i framer-motion
+- npm i react-countdown

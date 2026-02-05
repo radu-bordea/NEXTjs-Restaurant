@@ -74,7 +74,7 @@ const MenuPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="group relative flex flex-col justify-between rounded-2xl p-4 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-neutral-500 dark:hover:shadow-neutral-700"
+                className="group relative flex flex-col justify-between rounded-2xl p-4 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-neutral-500 bg-card shadow-sm dark:hover:shadow-neutral-700"
               >
                 {/* IMAGE */}
                 {item.img && (
@@ -92,7 +92,7 @@ const MenuPage = () => {
                 <div className="mt-4 flex flex-col items-center gap-3 text-center">
                   <h3 className="text-lg font-semibold md:text-xl">
                     {item.title}{" "}
-                    <sup className="text-sm text-amber-400">
+                    <sup className="text-sm text-muted-foreground">
                       {item.category}
                     </sup>
                   </h3>
@@ -105,7 +105,7 @@ const MenuPage = () => {
                     ${item.price}
                   </span>
 
-                  <Button className="mt-2 w-full">Add to cart</Button>
+                  <Button className="mt-2 w-full cursor-pointer">Add to cart</Button>
                 </div>
               </motion.div>
             ))}

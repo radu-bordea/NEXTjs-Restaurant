@@ -51,7 +51,7 @@ const Navbar = () => {
           {/* Phone */}
           <div className="flex items-center gap-2 rounded-full border px-3 py-1 text-sm text-muted-foreground">
             <Phone className="h-4 w-4" />
-            <span>123 456 78</span>
+            <a href="tel:12345678">123 456 78</a>
           </div>
 
           {/* Auth */}
@@ -99,8 +99,8 @@ const Navbar = () => {
               <VisuallyHidden>
                 <SheetTitle>Hot Buns navigation</SheetTitle>
               </VisuallyHidden>
-          {/* Theme */}
-          <ThemeToggle />
+              {/* Theme */}
+              <ThemeToggle />
               <Link
                 href="/"
                 className="text-lg font-medium transition-colors hover:text-primary"
