@@ -9,7 +9,7 @@ const CountDown = () => {
   return (
     <div className="flex gap-4">
       <Countdown
-        className="font-bold text-5xl text-muted-foreground"
+        className="font-bold text-3xl md:text-4xl lg:text-5xl text-muted-foreground"
         date={endingDate}
       />
       <AlarmClockCheck className="bg-red-400 text-gray-100 rounded p-1 w-8 h-8 dark:bg-red-500" />
