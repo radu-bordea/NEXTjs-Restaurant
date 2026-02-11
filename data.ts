@@ -10,7 +10,21 @@ type Product = {
 
 type Products = Product[];
 
-export const featuredProducts: Products = [
+export const singleProduct: Product = {
+  id: 1,
+  title: "Sicilian",
+  category: "",
+  price: 0,
+  desc: "Ignite your taste buds with a fiery combination of spicy pepperoni, jalapeños, crushed red pepper flakes, and melted mozzarella cheese, delivering a kick with every bite.",
+  img: "/temporary/p1.png",
+  options: [
+    { title: "Small", additionalPrice: 2 },
+    { title: "Medium", additionalPrice: 4 },
+    { title: "Large", additionalPrice: 6 },
+  ],
+};
+
+export const products: Products = [
   // Pizzas
   {
     id: 1,
@@ -105,42 +119,3 @@ export const featuredProducts: Products = [
   },
 ];
 
-type Menu = {
-  id: number;
-  slug: string;
-  category: string;
-  title: string;
-  desc?: string;
-  img?: string;
-  color: string;
-}[];
-
-export const menu: Menu = [
-  {
-    id: 1,
-    slug: "pastas",
-    category: "pasta",
-    title: "Italian Pastas",
-    desc: "Savor the taste of perfection with our exquisite Italian handmade pasta menu.",
-    img: "/temporary/m1.png",
-    color: "white",
-  },
-  {
-    id: 2,
-    slug: "burgers",
-    category: "burghers",
-    title: "Juicy Burgers",
-    desc: "Burger Bliss: Juicy patties, bold flavors, and gourmet toppings galore.",
-    img: "/temporary/m2.png",
-    color: "black",
-  },
-  {
-    id: 3,
-    slug: "pizzas",
-    category: "pizza",
-    title: "Cheesy Pizzas",
-    desc: "Pizza Paradise: Irresistible slices, mouthwatering toppings, and cheesy perfection.",
-    img: "/temporary/m3.png",
-    color: "white",
-  },
-];

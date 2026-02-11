@@ -1,9 +1,9 @@
-import { featuredProducts } from "@/data";
+import { products } from "@/data";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 const Featured = () => {
-  const allProducts = featuredProducts;
+  const allProducts = products;
   const featuredProducts6 = allProducts.slice(0, 6);
 
   return (
@@ -24,11 +24,11 @@ const Featured = () => {
           {featuredProducts6.map((item) => (
             <div
               key={item.id}
-              className="group relative flex h-[60vh] w-[80vw] max-w-sm snap-center flex-col justify-between rounded-2xl border bg-card p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:w-[45vw] xl:w-[28vw]"
+              className="group relative flex h-[60vh] w-[80vw] max-w-sm snap-center flex-col justify-between rounded-2xl border p-4 duration-300 md:w-[45vw] xl:w-[28vw] transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-neutral-500 bg-card shadow-sm dark:hover:shadow-neutral-700"
             >
               {/* IMAGE */}
               {item.img && (
-                <div className="relative h-44 w-full overflow-hidden rounded-xl hover:rotate-60 transtition-all duration-300">
+                <div className="relative h-44 w-full overflow-hidden rounded-xl hover:rotate-60 transtition-all duration-900">
                   <Image
                     src={item.img}
                     alt={item.title}

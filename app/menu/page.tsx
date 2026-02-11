@@ -1,6 +1,6 @@
 "use client";
 
-import { featuredProducts } from "@/data";
+import { products } from "@/data";
 import Image from "next/image";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -18,8 +18,8 @@ const MenuPage = () => {
 
   const filteredProducts =
     activeCategory === "all"
-      ? featuredProducts
-      : featuredProducts.filter(
+      ? products
+      : products.filter(
           (product) => product.category === activeCategory
         );
 
@@ -78,12 +78,12 @@ const MenuPage = () => {
               >
                 {/* IMAGE */}
                 {item.img && (
-                  <div className="relative h-44 w-full overflow-hidden rounded-xl hover:rotate-60 transtition-all duration-300">
+                  <div className="relative h-44 w-full overflow-hidden rounded-xl hover:rotate-60 transtition-all duration-900">
                     <Image
                       src={item.img}
                       alt={item.title}
                       fill
-                      className="object-contain transition-transform duration-500 group-hover:scale-103"
+                      className="object-contain transition-transform duration-900 group-hover:scale-103"
                     />
                   </div>
                 )}
