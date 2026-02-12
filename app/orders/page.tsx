@@ -38,9 +38,9 @@ const OrdersPage = () => {
       </div>
 
       <div className="overflow-hidden rounded-2xl border bg-card shadow-sm">
-        <div className="relative w-full overflow-x-auto">
+        <div className="relative w-full h-[60vh] overflow-x-auto overflow-y-auto">
           <table className="w-full text-sm md:text-base">
-            <thead className="bg-muted/50">
+            <thead className="bg-background/80 backdrop-blur sticky top-0 z-10">
               <tr className="border-b">
                 <th className="px-4 py-3 text-left font-semibold hidden md:table-cell">
                   Order ID
