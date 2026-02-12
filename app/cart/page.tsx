@@ -6,11 +6,6 @@ const cartItems = [
   { id: 1, title: "Sicilian", size: "Large", price: 79.9, img: "/temporary/p1.png" },
   { id: 2, title: "Sicilian", size: "Large", price: 79.9, img: "/temporary/p1.png" },
   { id: 3, title: "Sicilian", size: "La rge", price: 79.9, img: "/temporary/p1.png" },
-  { id: 4, title: "Sicilian", size: "La rge", price: 79.9, img: "/temporary/p1.png" },
-  { id: 5, title: "Sicilian", size: "La rge", price: 79.9, img: "/temporary/p1.png" },
-  { id: 6, title: "Sicilian", size: "La rge", price: 79.9, img: "/temporary/p1.png" },
-  { id: 7, title: "Sicilian", size: "La rge", price: 79.9, img: "/temporary/p1.png" },
-  { id: 8, title: "Sicilian", size: "La rge", price: 79.9, img: "/temporary/p1.png" },
 ];
 
 const CartPage = () => {
@@ -24,7 +19,7 @@ const CartPage = () => {
           <h1 className="mb-6 text-2xl font-bold">Your Cart</h1>
 
           {!hasItems ? (
-            <div className="flex h-[300px] flex-col items-center justify-center rounded-xl border border-dashed text-center text-muted-foreground">
+            <div className="flex h-75 flex-col items-center justify-center rounded-xl border border-dashed text-center text-muted-foreground">
               <p className="text-lg font-medium">Your cart is empty</p>
               <p className="text-sm">Looks like you haven’t added anything yet.</p>
               <Button className="mt-4">Browse menu</Button>
