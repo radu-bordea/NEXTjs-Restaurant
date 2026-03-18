@@ -18,3 +18,15 @@ export type ProductType = {
   options: { title: string; additionalPrice: number }[];
   catSlug: string;
 };
+
+export type OrderType = {
+  id: string;
+  createdAt: Date;
+  price: number;
+  products: { title: string; price: number; quantity: number; options?: { title: string; additionalPrice: number } }[];
+  status: string;
+  intent_id?: string | null;
+  userEmail?: string | null;
+  userPhone?: string | null;
+  address?: string | null;
+};

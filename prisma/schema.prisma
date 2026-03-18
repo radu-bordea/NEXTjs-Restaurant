@@ -41,6 +41,9 @@ model Order {
   createdAt DateTime @default(now())
   price     Decimal
   products  Json[]
-  status String
-  intent_id String? @unique // stripe_id
+  status    String
+  intent_id String?  @unique
+  userEmail String?
+  userPhone String?
+  address   String?
 }
