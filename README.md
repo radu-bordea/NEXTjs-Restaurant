@@ -13,3 +13,11 @@
 - npm i react-icons
 - npm i framer-motion
 - npm i react-countdown
+
+# prisma
+- npm install prisma tsx @types/pg --save-dev
+- npm install @prisma/client @prisma/adapter-pg dotenv pg
+- npx prisma init --db --output ../app/generated/prisma
+
+- npx prisma db seed
+- npx prisma studio

@@ -13,7 +13,7 @@ type Products = Product[];
 export const singleProduct: Product = {
   id: 1,
   title: "Sicilian",
-  category: "",
+  category: "pizzas",
   price: 0,
   desc: "Ignite your taste buds with a fiery combination of spicy pepperoni, jalapeños, crushed red pepper flakes, and melted mozzarella cheese, delivering a kick with every bite.",
   img: "/temporary/p1.png",
@@ -29,7 +29,7 @@ export const products: Products = [
   {
     id: 1,
     title: "Sicilian",
-    category: "pizza",
+    category: "pizzas",
     desc: "Ignite your taste buds with a fiery combination of spicy pepperoni, jalapeños, crushed red pepper flakes, and melted mozzarella cheese, delivering a kick with every bite.",
     img: "/temporary/p1.png",
     price: 24.9,
@@ -42,7 +42,7 @@ export const products: Products = [
   {
     id: 2,
     title: "Bacon Deluxe",
-    category: "pizza",
+    category: "pizzas",
     desc: "Indulge in smoky goodness with a flame-grilled beef patty, topped with crispy bacon, melted cheddar cheese, caramelized onions, and a smattering of tangy BBQ sauce.",
     img: "/temporary/p2.png",
     price: 29.9,
@@ -55,7 +55,7 @@ export const products: Products = [
   {
     id: 3,
     title: "Bella Napoli",
-    category: "pizza",
+    category: "pizzas",
     desc: "A classic Italian delight featuring a thin, crispy crust, tangy tomato sauce, fresh mozzarella, and a medley of aromatic herbs topped with lettuce, tomatoes, and a dollop of tangy mayo.",
     img: "/temporary/p3.png",
     price: 24.9,
@@ -70,7 +70,7 @@ export const products: Products = [
   {
     id: 4,
     title: "Spaghetti Carbonara",
-    category: "pasta",
+    category: "pastas",
     desc: "Classic Roman pasta with creamy sauce, crispy pancetta, parmesan, and a hint of black pepper.",
     img: "/temporary/p1.png",
     price: 19.9,
@@ -78,7 +78,7 @@ export const products: Products = [
   {
     id: 5,
     title: "Penne Arrabbiata",
-    category: "pasta",
+    category: "pastas",
     desc: "Spicy tomato sauce with garlic, chili flakes, and penne pasta for a bold Italian flavor.",
     img: "/temporary/p2.png",
     price: 18.9,
@@ -86,7 +86,7 @@ export const products: Products = [
   {
     id: 6,
     title: "Fettuccine Alfredo",
-    category: "pasta",
+    category: "pastas",
     desc: "Rich and creamy Alfredo sauce tossed with fettuccine and topped with parmesan cheese.",
     img: "/temporary/p3.png",
     price: 20.9,
