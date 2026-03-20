@@ -1,3 +1,5 @@
+"use client";
+
 const orders = [
   {
     id: "1237861238721",

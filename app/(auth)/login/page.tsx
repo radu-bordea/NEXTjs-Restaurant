@@ -1,9 +1,26 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
+  const { data, status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/");
+    }
+  }, [status, router]);
+
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div className="min-h-[calc(100vh-6rem)] md:min-h-[calc(100vh-9rem)] flex items-center justify-center px-4">
       {/* CARD */}
@@ -38,6 +55,7 @@ const LoginPage = () => {
             <Button
               variant="outline"
               className="flex items-center gap-3 justify-center"
+              onClick={() => signIn("google")}
             >
               <Image
                 src="/google.png"

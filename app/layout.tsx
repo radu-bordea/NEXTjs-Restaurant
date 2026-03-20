@@ -5,6 +5,7 @@ import Notification from "@/components/Notification";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "next-themes";
+import AuthProvider from "@/components/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,20 +32,20 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <Notification />
-          <Navbar />
-          {children}
-          <Footer />
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem={false}
+            disableTransitionOnChange
+          >
+            <Notification />
+            <Navbar />
+            {children}
+            <Footer />
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );
 }
-
-
