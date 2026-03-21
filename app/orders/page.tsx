@@ -1,35 +1,39 @@
 "use client";
 
-const orders = [
-  {
-    id: "1237861238721",
-    date: "19.07.2023",
-    price: "89.90",
-    products: "Big Burger Menu (2), Veggie Pizza (2), Coca Cola 1L (2)",
-    status: "On the way (approx. 10min)...",
-  },
-  {
-    id: "1237861238722",
-    date: "20.07.2023",
-    price: "42.50",
-    products: "Pepperoni Pizza (1), Fries (1)",
-    status: "Delivered",
-  },
-  {
-    id: "1237861238723",
-    date: "21.07.2023",
-    price: "65.00",
-    products: "Veggie Burger (2), Cola (2)",
-    status: "Preparing",
-  },
-];
+import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { OrderType } from "@/types";
 
 const statusStyles: Record<string, string> = {
   Delivered: "bg-green-100 text-green-700",
-  Preparing: "bg-amber-100 text-amber-700",
+  Cancelled: "bg-red-100 text-red-700",
+  Pending: "bg-yellow-100 text-yellow-700",
+  Processing: "bg-blue-100 text-blue-700",
 };
 
 const OrdersPage = () => {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  if (status === "unauthenticated") {
+    router.push("/");
+  }
+
+  const {
+    isLoading,
+    error,
+    data: orders,
+  } = useQuery<OrderType[]>({
+    queryKey: ["orders"],
+    queryFn: () =>
+      fetch("http://localhost:3000/api/orders").then((res) => res.json()),
+  });
+
+  if (isLoading || status === "loading") return "Loading...";
+
+  if (error) return "Something went wrong!";
+
   return (
     <div className="p-4 lg:px-20 xl:px-40 py-10">
       <div className="mb-6">
@@ -57,7 +61,7 @@ const OrdersPage = () => {
             </thead>
 
             <tbody>
-              {orders.map((order, i) => (
+              {orders?.map((order, i) => (
                 <tr
                   key={order.id}
                   className={`border-b transition-colors hover:bg-muted/50 ${
@@ -67,15 +71,17 @@ const OrdersPage = () => {
                   <td className="hidden md:table-cell px-4 py-4 text-muted-foreground">
                     {order.id}
                   </td>
-                  <td className="px-4 py-4">{order.date}</td>
+                  <td className="px-4 py-4">
+                    {new Date(order.createdAt).toLocaleDateString()}
+                  </td>
                   <td className="px-4 py-4 font-medium">${order.price}</td>
                   <td className="hidden md:table-cell px-4 py-4 max-w-md truncate text-muted-foreground">
-                    {order.products}
+                    {order.products.map((p) => p.title).join(", ")}
                   </td>
                   <td className="px-4 py-4">
                     <span
                       className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${
-                        statusStyles[order.status] ||
+                        statusStyles[order.status] ??
                         "bg-blue-100 text-blue-700"
                       }`}
                     >
