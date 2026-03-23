@@ -23,10 +23,30 @@ export type OrderType = {
   id: string;
   createdAt: Date;
   price: number;
-  products: { title: string; price: number; quantity: number; options?: { title: string; additionalPrice: number } }[];
+  products: CartItemType[];
   status: string;
   intent_id?: string | null;
   userEmail?: string | null;
   userPhone?: string | null;
   address?: string | null;
 };
+
+export type CartItemType = {
+  id: string;
+  title: string;
+  img?: string;
+  price: number;
+  optionTitle?: string;
+  quantity: number;
+};
+
+// types/next-auth.d.ts
+import NextAuth from "next-auth";
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      isAdmin?: boolean;
+    } & DefaultSession["user"];
+  }
+}

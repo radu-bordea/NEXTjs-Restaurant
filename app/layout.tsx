@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { ThemeProvider } from "next-themes";
 import AuthProvider from "@/components/AuthProvider";
 import QueryProvider from "@/components/QueryProvider";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,6 +46,7 @@ export default function RootLayout({
               <Navbar />
               {children}
               <Footer />
+              <Toaster richColors position="bottom-right" />
             </ThemeProvider>
           </QueryProvider>
         </AuthProvider>

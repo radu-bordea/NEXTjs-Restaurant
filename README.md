@@ -14,6 +14,7 @@
 - npm i framer-motion
 - npm i react-countdown
 - npm i @tanstack/react-query
+- npm install sonner
 
 # prisma
 - npm install prisma tsx @types/pg --save-dev
