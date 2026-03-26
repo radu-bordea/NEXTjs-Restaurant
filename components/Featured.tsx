@@ -32,7 +32,7 @@ const Featured = async () => {
                     src={item.img}
                     alt={item.title}
                     fill
-                    className="object-contain transition-transform duration-500 group-hover:scale-103"
+                    className="object-contain  duration-900 group-hover:scale-103 hover:rotate-60 transtition-all"
                   />
                 </div>
               )}
