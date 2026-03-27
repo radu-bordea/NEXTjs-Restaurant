@@ -4,10 +4,15 @@ import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Minus, Plus, ShoppingCart } from "lucide-react";
 
+type Option = {
+  title: string;
+  additionalPrice: number;
+};
+
 type Props = {
   price: number;
-  id: number;
-  options?: { title: string; additionalPrice: number }[];
+  id: string; // ✅ string (fixed)
+  options?: Option[];
 };
 
 const Price = ({ price, id, options }: Props) => {
@@ -16,8 +21,13 @@ const Price = ({ price, id, options }: Props) => {
   const [selected, setSelected] = useState(0);
 
   useEffect(() => {
+    const selectedOption = options?.[selected];
+
     setTotal(
-      quantity * (options ? price + options[selected].additionalPrice : price)
+      quantity *
+        (selectedOption
+          ? price + selectedOption.additionalPrice
+          : price)
     );
   }, [quantity, selected, options, price]);
 
@@ -26,9 +36,9 @@ const Price = ({ price, id, options }: Props) => {
       {/* PRICE */}
       <h2 className="text-3xl font-bold">${total.toFixed(2)}</h2>
 
-      {/* OPTIONS */}
-      {options && (
-        <div className="flex flex-wrap gap-2">
+      {/* SIZE OPTIONS (Small / Medium / Large) */}
+      {options && options.length > 0 && (
+        <div className="flex gap-2">
           {options.map((option, index) => (
             <Button
               key={option.title}
